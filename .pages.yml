@@ -1,0 +1,43 @@
+media:
+  input: media
+  output: /media
+
+content:
+  - name: writing
+    label: Writing
+    type: collection
+    path: _posts
+    view:
+      fields: [title, date, language]
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: language
+        label: Language
+        type: select
+        options:
+          values: [ko, en]
+      - name: music_title
+        label: Music Title
+        type: string
+      - name: music_artist
+        label: Music Artist
+        type: string
+      - name: spotify_url
+        label: Spotify URL
+        type: string
+      - name: apple_music_url
+        label: Apple Music URL
+        type: string
+      - name: youtube_url
+        label: YouTube URL
+        type: string
+      - name: body
+        label: Body
+        type: rich-text
