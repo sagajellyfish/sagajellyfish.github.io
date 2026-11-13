@@ -23,21 +23,10 @@ content:
         type: select
         options:
           values: [ko, en]
-      - name: music_title
-        label: Music Title
+      -  name: music_url
+        label: Music URL
         type: string
-      - name: music_artist
-        label: Music Artist
-        type: string
-      - name: spotify_url
-        label: Spotify URL
-        type: string
-      - name: apple_music_url
-        label: Apple Music URL
-        type: string
-      - name: youtube_url
-        label: YouTube URL
-        type: string
+        description: "YouTube, SoundCloud, Spotify, or Apple Music link (optional)"
       - name: body
         label: Body
         type: rich-text
