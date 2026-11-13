@@ -27,7 +27,7 @@ content:
         label: Music Note
         type: rich-text
         description: "Optional commentary about the music"
-      -  name: music_url
+      - name: music_url
         label: Music URL
         type: string
         description: "YouTube, SoundCloud, Spotify, or Apple Music link (optional)"
