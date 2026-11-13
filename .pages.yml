@@ -23,6 +23,10 @@ content:
         type: select
         options:
           values: [ko, en]
+      - name: music_note
+        label: Music Note
+        type: rich-text
+        description: "Optional commentary about the music"
       -  name: music_url
         label: Music URL
         type: string
