@@ -1,0 +1,15 @@
+
+title: AROS
+description: Personal creative workspace.
+
+url: "https://sagajellyfish.github.io"
+baseurl: ""
+
+markdown: kramdown
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
