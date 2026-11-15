@@ -47,6 +47,10 @@ content:
         label: YouTube URL
         type: string
         description: "YouTube 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
+      - name: soundcloud_url
+        label: SoundCloud URL
+        type: string
+        description: "SoundCloud 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
       - name: body
         label: Body
         type: rich-text

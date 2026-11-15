@@ -208,6 +208,11 @@
           {% if page.youtube_url %}
           <a href="{{ page.youtube_url }}" target="_blank" rel="noopener noreferrer">YOUTUBE ↗</a>
           {% endif %}
+
+          {% assign soundcloud_url = page.soundcloud_url | default: '' | strip %}
+          {% if soundcloud_url != empty %}
+          <a href="{{ soundcloud_url | escape }}" target="_blank" rel="noopener noreferrer">SOUNDCLOUD ↗</a>
+          {% endif %}
         </div>
 
         {% if music_note_text != empty %}
