@@ -27,10 +27,26 @@ content:
         label: Music Note
         type: rich-text
         description: "Optional commentary about the music"
-      - name: music_url
-        label: Music URL
+      - name: music_title
+        label: Music Title
         type: string
-        description: "YouTube, SoundCloud, Spotify, or Apple Music link (optional)"
+        description: "곡 제목. 입력하면 글에 음악 영역이 표시돼요."
+      - name: music_artist
+        label: Music Artist
+        type: string
+        description: "아티스트 이름 (선택 사항)"
+      - name: spotify_url
+        label: Spotify URL
+        type: string
+        description: "Spotify 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
+      - name: apple_music_url
+        label: Apple Music URL
+        type: string
+        description: "Apple Music 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
+      - name: youtube_url
+        label: YouTube URL
+        type: string
+        description: "YouTube 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
       - name: body
         label: Body
         type: rich-text
