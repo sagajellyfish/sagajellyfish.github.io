@@ -93,6 +93,29 @@
       text-underline-offset: 4px;
     }
 
+    .music-note {
+      margin-top: 24px;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .music-note > :first-child {
+      margin-top: 0;
+    }
+
+    .music-note > :last-child {
+      margin-bottom: 0;
+    }
+
+    .music-note a {
+      text-decoration: underline;
+    }
+
+    .music-note img {
+      max-width: 100%;
+      height: auto;
+    }
+
     .reading-label {
       margin-top: 65px;
     }
@@ -151,17 +174,22 @@
         {{ page.date | date: "%d %B %Y" | upcase }}
       </div>
 
-      {% if page.music_title %}
+      {% assign music_note_html = page.music_note | markdownify %}
+      {% assign music_note_text = music_note_html | strip_html | strip %}
+      {% if page.music_title or music_note_text != empty %}
       <section class="music">
 
         <div class="label">BEFORE YOU READ</div>
 
+        {% if page.music_title %}
         <div class="song">
           ♫ {{ page.music_title }}
           {% if page.music_artist %}
           <span>— {{ page.music_artist }}</span>
           {% endif %}
         </div>
+
+        {% endif %}
 
         <div class="music-links">
           {% if page.spotify_url %}
@@ -176,6 +204,12 @@
           <a href="{{ page.youtube_url }}" target="_blank" rel="noopener noreferrer">YOUTUBE ↗</a>
           {% endif %}
         </div>
+
+        {% if music_note_text != empty %}
+        <div class="music-note">
+          {{ music_note_html }}
+        </div>
+        {% endif %}
 
       </section>
       {% endif %}
