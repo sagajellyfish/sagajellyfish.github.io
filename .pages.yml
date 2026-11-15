@@ -46,7 +46,7 @@ content:
       - name: youtube_url
         label: YouTube URL
         type: string
-        description: "YouTube 공유 링크. 음악 제목과 함께 입력해 주세요. (선택 사항)"
+        description: "YouTube 영상 주소 또는 youtu.be 공유 링크. 글 안에 영상 플레이어가 표시돼요. (선택 사항)"
       - name: soundcloud_url
         label: SoundCloud URL
         type: string

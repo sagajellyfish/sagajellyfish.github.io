@@ -93,6 +93,17 @@
       text-underline-offset: 4px;
     }
 
+    .youtube-player {
+      margin-top: 24px;
+    }
+
+    .youtube-player iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+    }
+
     .music-note {
       margin-top: 24px;
       font-size: 14px;
@@ -181,7 +192,8 @@
 
       {% assign music_note_html = page.music_note | markdownify %}
       {% assign music_note_text = music_note_html | strip_html | strip %}
-      {% if page.music_title or music_note_text != empty %}
+      {% assign youtube_url = page.youtube_url | default: '' | strip %}
+      {% if page.music_title or music_note_text != empty or youtube_url != empty %}
       <section class="music">
 
         <div class="label">BEFORE YOU READ</div>
@@ -215,6 +227,10 @@
           {% endif %}
         </div>
 
+        {% if youtube_url != empty %}
+        <div class="youtube-player" data-youtube-url="{{ youtube_url | escape }}" hidden></div>
+        {% endif %}
+
         {% if music_note_text != empty %}
         <div class="music-note">
           {{ music_note_html }}
@@ -234,5 +250,39 @@
     </footer>
 
   </div>
+  <script>
+    document.querySelectorAll('[data-youtube-url]').forEach(function (container) {
+      try {
+        var url = new URL(container.dataset.youtubeUrl);
+        if (url.protocol !== 'https:' && url.protocol !== 'http:') return;
+
+        var host = url.hostname.toLowerCase();
+        var videoId = null;
+        if (host === 'youtu.be' || host === 'www.youtu.be') {
+          videoId = url.pathname.slice(1).split('/')[0];
+        } else if (['youtube.com', 'www.youtube.com', 'm.youtube.com'].includes(host)) {
+          if (url.pathname === '/watch') {
+            videoId = url.searchParams.get('v');
+          } else {
+            var match = url.pathname.match(/^\/(?:embed|shorts)\/([^/]+)\/?$/);
+            if (match) videoId = match[1];
+          }
+        }
+        if (!videoId || !/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
+
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/' + videoId + '?playsinline=1';
+        iframe.title = 'YouTube video player';
+        iframe.loading = 'lazy';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        container.appendChild(iframe);
+        container.hidden = false;
+      } catch (error) {
+        // Keep the original external link when the URL cannot be embedded.
+      }
+    });
+  </script>
 </body>
 </html>
